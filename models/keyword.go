@@ -14,7 +14,7 @@ type Keyword struct {
 func AllKeyword() ([]*Keyword, error) {
 	rows, err := db.Query("SELECT * FROM keywords")
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return nil, err
 	}
 	defer rows.Close()
@@ -31,9 +31,9 @@ func AllKeyword() ([]*Keyword, error) {
 		if err := rows.Scan(&kw.Id, &kw.Keyword, &kw.TimeOfArticle, &kw.LastCrawledAt, &kw.CrawlDelayTime); err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(kw.Keyword)
+		log.Println(kw.Keyword)
 		out, _ := json.Marshal(kw)
-		fmt.Printf(string(out))
+		log.Println(string(out))
 		words = append(words, &kw)
 	}
 
