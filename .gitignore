@@ -1,2 +1,4 @@
 .idea
-.exe
+.env
+.examword_cache
+.definition_cache
