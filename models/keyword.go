@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"encoding/json"
+	"database/sql"
 )
 
 type Keyword struct {
@@ -61,7 +62,7 @@ func EmailForKeyword(keyword_id int) ([]string, error) {
 	for rows.Next() {
 		var id int
 		var email string
-		var keyword_id int
+		var keyword_id sql.NullInt64
 		if err := rows.Scan(&id, &keyword_id, &email); err != nil {
 			log.Fatal(err)
 		}
