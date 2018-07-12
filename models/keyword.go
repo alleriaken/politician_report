@@ -41,7 +41,7 @@ func AllKeyword() ([]*Keyword, error) {
 }
 
 func EmailForKeyword(keyword_id int) ([]string, error) {
-	q := fmt.Sprintf("select * from email_delivering where keyword_id =0 or keyword_id = %d", keyword_id)
+	q := fmt.Sprintf("select * from email_delivering where keyword_id is null or keyword_id =0 or keyword_id = %d", keyword_id)
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Println(err)
