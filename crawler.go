@@ -58,7 +58,10 @@ func crawlGoogle(keyword *models.Keyword)  {
 						"Please check it out: <br/>" +
 						"Article : %s <br/></html>" +
 						"Url: %s", keyword.Keyword, ele.Text(), full_url)
-					SendEmail("New article crawled for keyword: " + keyword.Keyword,  email_body)
+					emails, _ := models.EmailForKeyword(keyword.Id)
+					for _, to := range emails {
+						SendEmail("New article crawled for keyword: "+keyword.Keyword, email_body, to)
+					}
 				}
 			} else {
 				log.Println(matches)
@@ -78,10 +81,9 @@ func crawlGoogle(keyword *models.Keyword)  {
 	}
 }
 
-func SendEmail(title string,body string) {
+func SendEmail(title string, body string, to string) {
 	from := os.Getenv("SENDER_EMAIL")
 	pass := os.Getenv("SENDER_EMAIL_PASSWORD")
-	to := "chunghd126@gmail.com"
 
 	msg := "From: %s\n" +
 		"To: %s\n" +
