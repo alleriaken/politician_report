@@ -1,3 +1,4 @@
 github.com/joho/godotenv
 github.com/gocolly/colly
 github.com/go-sql-driver/mysql
+github.com/grokify/html-strip-tags-go
