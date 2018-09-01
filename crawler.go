@@ -37,7 +37,7 @@ func main() {
 }
 
 func crawlGoogle(keyword *models.Keyword)  {
-	total_visit_page := 1
+	total_visit_page := 10
 	total_results := 0
 
 	article_urls := ""
